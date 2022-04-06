@@ -7,7 +7,24 @@
 //     });
 // }
 
+
+
 function deleteStudent(id) {    
     var btnDelete = document.getElementById("btnDelete");
     btnDelete.setAttribute("href", "/student/delete/" + id);
 }
+
+
+
+function selectStudent(id, name, email, password) {
+    document.getElementById("modalUpdateForm").action = "/student/update/" + id;
+    document.getElementById("modalUpdateInputName").value = name;
+    document.getElementById("modalUpdateInputEmail").value = email;
+    document.getElementById("modalUpdateInputPassword").value = password;
+
+    $.get("/student/select/" + id, function(data) {
+        console.log(data);
+    });
+}
+
+
