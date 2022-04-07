@@ -1,0 +1,45 @@
+.bntClose {
+    padding: 1rem;
+    background-color: transparent;
+    border: 0;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.5;
+}
+.bntClose:hover {
+    color: #000;
+    opacity: 0.75;
+}
+
+
+.form-group {
+    margin-top: 20px;
+}
+
+
+header {
+    margin-bottom: 15px;
+}
+
+
+tbody tr {
+    line-height: 38px;
+}
+.btnArea {
+    display: flex; 
+    justify-content: space-around;
+}
+
+
+footer {
+    position: fixed; 
+    bottom: 0px; 
+    width: 100%;
+}
+footer div p {
+    color: white; 
+    margin: 0px;
+}

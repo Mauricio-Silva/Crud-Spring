@@ -21,10 +21,6 @@ function selectStudent(id, name, email, password) {
     document.getElementById("modalUpdateInputName").value = name;
     document.getElementById("modalUpdateInputEmail").value = email;
     document.getElementById("modalUpdateInputPassword").value = password;
-
-    $.get("/student/select/" + id, function(data) {
-        console.log(data);
-    });
 }
 
 

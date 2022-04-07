@@ -53,22 +53,9 @@ public class StudentController {
     }
 
 
-    @GetMapping("/select/{id}")
-    public String selectStudent(@PathVariable("id") UUID id, Model html) {
-        Student studentForUpdate = studentService.getStudentById(id);
-        studentForUpdate.setPassword(studentForUpdate.getPassword());
-        html.addAttribute("studentUpdate", studentForUpdate);
-        return "redirect:/student/listAll";
-    }
-
-
     @PostMapping("/update/{id}")
     public String updateStudent(@PathVariable("id") UUID id, @ModelAttribute("studentUpdate") Student studentFromUpdate) {
-        // Student studentForUpdate = studentService.getStudentById(id);
-        // studentForUpdate.setName(studentFromUpdate.getName());
-        // studentForUpdate.setEmail(studentFromUpdate.getEmail());
-        // studentForUpdate.setPassword(studentFromUpdate.getPassword());
-        // studentService.saveStudent(studentFromUpdate);
+        studentService.saveStudent(studentFromUpdate);
         return "redirect:/student/listAll";
     }
 }
