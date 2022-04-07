@@ -23,39 +23,32 @@ public class TeacherController {
     TeacherService teacherService;
 
 
-    @GetMapping("/listAll")
+    @GetMapping("/main")
     public String listAllTeachers(Model html) {
         List<Teacher> teachersList = teacherService.getAllTeachers();
         html.addAttribute("teachersList", teachersList);
-        html.addAttribute("teachersUpdate", new Teacher());
-        return "teacherListAll";
-    }
-
-
-    @GetMapping("/register")
-    public String teacherRegister(Model html) {
-        html.addAttribute("teacherRegister", new Teacher());
-        return "teacherRegister";
+        html.addAttribute("noDataTeacher", new Teacher());
+        return "teacherMain";
     }
 
 
     @PostMapping("/save")
-    public String teacherSave(@ModelAttribute("teacherRegister") Teacher teacherFromRegister) {
+    public String saveTeacher(@ModelAttribute("noDataTeacher") Teacher teacherFromRegister) {
         teacherService.saveTeacher(teacherFromRegister);
-        return "redirect:/teacher/listAll";
+        return "redirect:/teacher/main";
     }
 
 
     @GetMapping("/delete/{id}")
     public String deleteTeacher(@PathVariable("id") UUID id) {
         teacherService.deleteTeacherById(id);
-        return "redirect:/teacher/listAll";
+        return "redirect:/teacher/main";
     }
 
 
     @PostMapping("/update/{id}")
-    public String updateTeacher(@PathVariable("id") UUID id, @ModelAttribute("teacherUpdate") Teacher teacherFromUpdate) {
+    public String updateTeacher(@PathVariable("id") UUID id, @ModelAttribute("noDataTeacher") Teacher teacherFromUpdate) {
         teacherService.saveTeacher(teacherFromUpdate);
-        return "redirect:/teacher/listAll";
+        return "redirect:/teacher/main";
     }
 }

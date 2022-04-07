@@ -20,6 +20,11 @@
 }
 
 
+nav h1 {
+    margin: 0px !important;
+}
+
+
 header {
     margin-bottom: 15px;
 }

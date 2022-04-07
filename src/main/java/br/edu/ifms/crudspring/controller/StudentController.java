@@ -23,39 +23,32 @@ public class StudentController {
     StudentService studentService;
 
 
-    @GetMapping("/listAll")
+    @GetMapping("/main")
     public String listAllStudents(Model html) {
         List<Student> studentsList = studentService.getAllStudents();
         html.addAttribute("studentsList", studentsList);
-        html.addAttribute("studentUpdate", new Student());
-        return "studentListAll";
-    }
-
-
-    @GetMapping("/register")
-    public String studanteResister(Model html) {
-        html.addAttribute("studentResister", new Student());
-        return "studentRegister";
+        html.addAttribute("noDataStudent", new Student());
+        return "studentMain";
     }
 
 
     @PostMapping("/save")
-    public String studentSave(@ModelAttribute("studentResister") Student studentFromRegister) {
+    public String studentSave(@ModelAttribute("noDataStudent") Student studentFromRegister) {
         studentService.saveStudent(studentFromRegister);
-        return "redirect:/student/listAll";
+        return "redirect:/student/main";
     }
 
 
     @GetMapping("/delete/{id}")
     public String deleteStudent(@PathVariable("id") UUID id) {
         studentService.deleteStudentById(id);
-        return "redirect:/student/listAll";
+        return "redirect:/student/main";
     }
 
 
     @PostMapping("/update/{id}")
-    public String updateStudent(@PathVariable("id") UUID id, @ModelAttribute("studentUpdate") Student studentFromUpdate) {
+    public String updateStudent(@PathVariable("id") UUID id, @ModelAttribute("noDataStudent") Student studentFromUpdate) {
         studentService.saveStudent(studentFromUpdate);
-        return "redirect:/student/listAll";
+        return "redirect:/student/main";
     }
 }

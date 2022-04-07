@@ -8,15 +8,12 @@
 // }
 
 
-
 function deleteStudent(id) {    
-    var btnDelete = document.getElementById("btnDelete");
+    var btnDelete = document.getElementById("modalButtonDelete");
     btnDelete.setAttribute("href", "/student/delete/" + id);
 }
 
-
-
-function selectStudent(id, name, email, password) {
+function updateStudent(id, name, email, password) {
     document.getElementById("modalUpdateForm").action = "/student/update/" + id;
     document.getElementById("modalUpdateInputName").value = name;
     document.getElementById("modalUpdateInputEmail").value = email;
@@ -24,3 +21,17 @@ function selectStudent(id, name, email, password) {
 }
 
 
+
+
+
+function deleteTeacher(id) {    
+    var btnDelete = document.getElementById("modalButtonDelete");
+    btnDelete.setAttribute("href", "/teacher/delete/" + id);
+}
+
+function updateTeacher(id, name, email, password) {
+    document.getElementById("modalUpdateForm").action = "/teacher/update/" + id;
+    document.getElementById("modalUpdateInputName").value = name;
+    document.getElementById("modalUpdateInputEmail").value = email;
+    document.getElementById("modalUpdateInputPassword").value = password;
+}

@@ -4,13 +4,55 @@
     <title>Estudantes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
-    <link rel="stylesheet" th:href="@{/css/studentListAll.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
     <link rel="shortcut icon" th:href="@{/images/spring_framework_logo.png}" type="image/x-icon">
   </head>
   <body>
     
 
-    <!----- Modal Delete Message ----------------------------------------------------------->
+    <!----- Modal Register ----------------------------------------------------------->
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="studentRegisterModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="studentRegisterModalLabel">Registrar Estudante</h5>
+            <button type="button" class="close bntClose" data-dismiss="modal" aria-label="Fechar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form th:action="@{/student/save}" th:object="${noDataStudent}" method="post">
+            <div class="modal-body">
+              <div class="form-row">
+
+                <div class="form-group">
+                  <label for="modalRegisterInputName">Nome</label>
+                  <input th:field="*{name}" type="text" class="form-control" id="modalRegisterInputName" placeholder="Digite um Nome"/>
+                </div>
+
+                <div class="form-group">
+                  <label for="modalRegisterInputEmail">Email</label>
+                  <input th:field="*{email}" type="email" class="form-control" id="modalRegisterInputEmail" placeholder="Digite um Email"/>
+                </div>
+
+                <div class="form-group">
+                  <label for="modalRegisterInputPassword">Senha</label>
+                  <input th:field="*{password}" type="password" class="form-control" id="modalRegisterInputPassword" placeholder="Digite uma senha"/>
+                </div>
+
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+              <button type="submit" class="btn btn-success">Cadastrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+
+
+    <!----- Modal Delete ----------------------------------------------------------->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="studentDeleteModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -23,14 +65,14 @@
           <div class="modal-body">Tem certeza que deseja excluir o estudante selecionado?</div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
-            <a type="button" class="btn btn-danger" id="btnDelete">Excluir</a>
+            <a type="button" class="btn btn-danger" id="modalButtonDelete">Excluir</a>
           </div>
         </div>
       </div>
     </div>
 
 
-    <!----- Modal Update Message ----------------------------------------------------------->
+    <!----- Modal Update ----------------------------------------------------------->
     <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="studentUpdateModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -40,7 +82,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form th:action="@{/student/update}" th:object="${studentUpdate}" method="post" id="modalUpdateForm">
+          <form th:action="@{/student/update}" th:object="${noDataStudent}" method="post" id="modalUpdateForm">
             <div class="modal-body">
               <div class="form-row">
 
@@ -56,7 +98,7 @@
 
                 <div class="form-group">
                   <label for="modalUpdateInputPassword">Senha</label>
-                  <input th:field="*{password}" type="password" class="form-control" id="modalUpdateInputPassword" placeholder="Digite a sua senha"/>
+                  <input th:field="*{password}" type="password" class="form-control" id="modalUpdateInputPassword" placeholder="Informe a senha"/>
                 </div>
 
               </div>
@@ -64,7 +106,7 @@
           
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
-              <button type="submit" class="btn btn-success" id="btnUpdate">Atualizar</button>
+              <button type="submit" class="btn btn-success">Atualizar</button>
             </div>
           </form>
         </div>
@@ -74,7 +116,7 @@
 
     <!----- Navegation Menu ---------------------------------------------------------------------->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-sm-around">
-      <h1 class="navbar-brand">Gestão de Alunos</h1>
+      <h1 class="navbar-brand">Gestão de Estudantes</h1>
     </nav>
 
 
@@ -82,11 +124,11 @@
     <header>
       <div class="container">
         <div class="row">
-          <h2 class="mt-3">Relação de Alunos</h2>
+          <h2 class="mt-3">Relação de Estudantes</h2>
         </div>
         <div class="row">
           <div class="mt-2 mb-2">
-            <a th:href="@{/student/register}" class="btn btn-success">
+            <a class="btn btn-success" data-toggle="modal" data-target="#registerModal">
               <i class="fas fa-user-plus"></i>
               Cadastrar Novo Estudante
             </a>
@@ -118,7 +160,7 @@
                 <th th:text="${student.email}" scope="row"></th>
                 <!-- <th th:text="${student.password}" scope="row" class="passwordField" style="overflow: hidden;"></th> -->
                 <th class="btnArea">
-                  <a class="btn btn-primary" data-toggle="modal" data-target="#updateModal" th:attr="onclick=|selectStudent('${student.id}', '${student.name}', '${student.email}', '${student.password}')|">Editar</a>
+                  <a class="btn btn-primary" data-toggle="modal" data-target="#updateModal" th:attr="onclick=|updateStudent('${student.id}', '${student.name}', '${student.email}', '${student.password}')|">Editar</a>
                   <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" th:attr="onclick=|deleteStudent('${student.id}')|">Excluir</a>
                 </th>
               </tr>
@@ -153,6 +195,6 @@
     <script type="text/javascript" src="https://www.myersdaily.org/joseph/javascript/md5.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <script type="text/javascript" th:src="@{/js/studentListAll.js}"></script>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
   </body>
 </html>
