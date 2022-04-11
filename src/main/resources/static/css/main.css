@@ -20,6 +20,19 @@
 }
 
 
+nav a {
+    width: 100px;
+}
+nav a:first-child img {
+    width: 30px;
+    height: 30px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+nav a:last-child {
+    color: #fff;
+    text-decoration: none;
+}
 nav h1 {
     margin: 0px !important;
 }
