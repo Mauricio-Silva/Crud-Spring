@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-// import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,8 +21,8 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     UUID id;
 
-    // @NotBlank(message = "Name cannot be blank");
     String name;
     String email;
     String password;
+    Teacher teacher;
 }

@@ -1,13 +1,13 @@
 package br.edu.ifms.crudspring.model;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,17 +17,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Teacher {
-    
+public class Turma {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     UUID id;
 
     String name;
-    String email;
-    String password;
 
-    @ManyToOne
-    @JoinColumn(name = "turma_id")
-    Turma turma;
+    @OneToMany(mappedBy = "turma")
+    List<Teacher> teachers;
 }
