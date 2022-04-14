@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Turma {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     UUID id;
 
     String name;

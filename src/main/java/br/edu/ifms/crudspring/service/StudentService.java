@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifms.crudspring.model.Student;
-import br.edu.ifms.crudspring.repository.StudentReposiroty;
+import br.edu.ifms.crudspring.repository.StudentRepository;
 
 @Service
 public class StudentService {
 
     @Autowired
-    StudentReposiroty studentRepository;
+    StudentRepository studentRepository;
 
 
     public List<Student> getAllStudents() {

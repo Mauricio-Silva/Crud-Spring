@@ -32,7 +32,7 @@ public class TurmaController {
     }
 
 
-    @GetMapping("/save")
+    @PostMapping("/save")
     public String turmaSave(@ModelAttribute("noDataTurma") Turma turmaFromRegister) {
         turmaService.saveTurma(turmaFromRegister);
         return "redirect:/turma/main";

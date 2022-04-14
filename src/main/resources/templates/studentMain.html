@@ -15,8 +15,8 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="RegisterModalLabel">Registrar Estudante</h5>
-            <button type="button" class="close bntClose" data-dismiss="modal" aria-label="Fechar">
+            <h5 class="modal-title" id="RegisterModalLabel">Cadastrar Estudante</h5>
+            <button type="button" class="close CloseModalXButton" data-dismiss="modal" aria-label="Fechar">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -36,7 +36,7 @@
 
                 <div class="form-group">
                   <label for="RegisterModalInputPassword">Senha</label>
-                  <input th:field="*{password}" type="password" class="form-control" id="RegisterModalInputPassword" placeholder="Digite uma senha" required/>
+                  <input th:field="*{password}" type="password" class="form-control" id="RegisterModalInputPassword" placeholder="Digite uma Senha" required/>
                 </div>
 
               </div>
@@ -58,52 +58,52 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="DeleteModalLabel">Excluir Estudante</h5>
-            <button type="button" class="close bntClose" data-dismiss="modal" aria-label="Fechar">
+            <button type="button" class="close CloseModalXButton" data-dismiss="modal" aria-label="Fechar">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">Tem certeza que deseja excluir o estudante selecionado?</div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
-            <a type="button" class="btn btn-danger" id="modalButtonDelete">Excluir</a>
+            <a type="button" class="btn btn-danger" id="DeleteModalButton">Excluir</a>
           </div>
         </div>
       </div>
     </div>
 
 
+
     <!----- Modal Update ----------------------------------------------------------->
-    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="studentUpdateModalLabel" aria-hidden="true">
+    <div class="modal fade" id="UpdateModal" tabindex="-1" role="dialog" aria-labelledby="UpdateModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="studentUpdateModalLabel">Editar Estudante</h5>
-            <button type="button" class="close bntClose" data-dismiss="modal" aria-label="Fechar">
+            <h5 class="modal-title" id="UpdateModalLabel">Editar Estudante</h5>
+            <button type="button" class="close CloseModalXButton" data-dismiss="modal" aria-label="Fechar">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form th:action="@{/student/update}" th:object="${noDataStudent}" method="post" id="modalUpdateForm">
+          <form th:action="@{/student/update}" th:object="${noDataStudent}" method="post" id="UpdateModalForm">
             <div class="modal-body">
               <div class="form-row">
 
                 <div class="form-group">
-                  <label for="modalUpdateInputName">Nome</label>
-                  <input th:field="*{name}" type="text" class="form-control" id="modalUpdateInputName" placeholder="Informe o nome"/>
+                  <label for="UpdateModalInputName">Nome</label>
+                  <input th:field="*{name}" type="text" class="form-control MI" id="UpdateModalInputName" placeholder="Informe o Nome"/>
                 </div>
 
                 <div class="form-group">
-                  <label for="modalUpdateInputEmail">Email</label>
-                  <input th:field="*{email}" type="email" class="form-control" id="modalUpdateInputEmail" placeholder="Informe o email"/>
+                  <label for="UpdateModalInputEmail">Email</label>
+                  <input th:field="*{email}" type="email" class="form-control MI" id="UpdateModalInputEmail" placeholder="Informe o Email"/>
                 </div>
 
                 <div class="form-group">
-                  <label for="modalUpdateInputPassword">Senha</label>
-                  <input th:field="*{password}" type="password" class="form-control" id="modalUpdateInputPassword" placeholder="Informe a senha"/>
+                  <label for="UpdateModalInputPassword">Senha</label>
+                  <input th:field="*{password}" type="password" class="form-control MI" id="UpdateModalInputPassword" placeholder="Informe a Senha"/>
                 </div>
 
               </div>
             </div>
-          
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
               <button type="submit" class="btn btn-success">Atualizar</button>
@@ -114,14 +114,21 @@
     </div>
 
 
+
     <!----- Navegation Menu ---------------------------------------------------------------------->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-sm-around">
-      <a th:href="@{/student/main}">
-        <img th:src="@{/images/spring_framework_logo_white.png}"/>
-      </a>
+      <div class="navItem">
+        <a th:href="@{/student/main}">
+          <img th:src="@{/images/spring_framework_logo_white.png}"/>
+        </a>
+      </div>
       <h1 class="navbar-brand">Gestão de Estudantes</h1>
-      <a th:href="@{/teacher/main}">Professores</a>
+      <div class="navItem">
+        <a th:href="@{/teacher/main}">Professores</a>
+        <a th:href="@{/turma/main}">Turmas</a>
+      </div>
     </nav>
+
 
 
     <!----- Header ------------------------------------------------------------------------------->
@@ -132,7 +139,7 @@
         </div>
         <div class="row">
           <div class="mt-2 mb-2">
-            <a class="btn btn-success" data-toggle="modal" data-target="#registerModal">
+            <a class="btn btn-success" data-toggle="modal" data-target="#RegisterModal">
               <i class="fas fa-user-plus"></i>
               Cadastrar Novo Estudante
             </a>
@@ -140,6 +147,7 @@
         </div>
       </div>
     </header>
+
 
 
     <!----- Students Table ----------------------------------------------------------------------->
@@ -164,8 +172,8 @@
                 <th th:text="${student.email}" scope="row"></th>
                 <!-- <th th:text="${student.password}" scope="row" class="passwordField" style="overflow: hidden;"></th> -->
                 <th class="btnArea">
-                  <a class="btn btn-primary" data-toggle="modal" data-target="#updateModal" th:attr="onclick=|updateStudent('${student.id}', '${student.name}', '${student.email}', '${student.password}')|">Editar</a>
-                  <a class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" th:attr="onclick=|deleteStudent('${student.id}')|">Excluir</a>
+                  <a class="btn btn-primary" data-toggle="modal" data-target="#UpdateModal" th:attr="onclick=|UpdateObj('${student}')|">Editar</a>
+                  <a class="btn btn-danger" data-toggle="modal" data-target="#DeleteModal" th:attr="onclick=|DeleteObj('/student', '${student.id}')|">Excluir</a>
                 </th>
               </tr>
             </tbody>
@@ -180,12 +188,14 @@
     </main>
 
 
+
     <!----- Footer ------------------------------------------------------------------------------->
     <footer class="bg-dark text-center text-lg-start">
       <div class="text-center p-3">
         <p>TADS5 - DBF-I © Desenvolvido por Mauricio</p>
       </div>
     </footer>
+
 
 
     <!----- Scripts ------------------------------------------------------------------------------>
@@ -200,5 +210,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script type="text/javascript" th:src="@{/js/main.js}"></script>
+
   </body>
 </html>

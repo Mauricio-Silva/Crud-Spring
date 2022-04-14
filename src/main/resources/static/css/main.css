@@ -1,4 +1,4 @@
-.bntClose {
+.CloseModalXButton {
     padding: 1rem;
     background-color: transparent;
     border: 0;
@@ -9,7 +9,7 @@
     text-shadow: 0 1px 0 #fff;
     opacity: 0.5;
 }
-.bntClose:hover {
+.CloseModalXButton:hover {
     color: #000;
     opacity: 0.75;
 }
@@ -20,18 +20,20 @@
 }
 
 
-nav a {
-    width: 100px;
+nav .navItem {
+    display: flex;
+    justify-content: space-around;
+    width: 200px;
 }
-nav a:first-child img {
+nav .navItem a {
+    color: #fff;
+    text-decoration: none;
+}
+nav .navItem img {
     width: 30px;
     height: 30px;
     margin-top: 2px;
     margin-bottom: 2px;
-}
-nav a:last-child {
-    color: #fff;
-    text-decoration: none;
 }
 nav h1 {
     margin: 0px !important;

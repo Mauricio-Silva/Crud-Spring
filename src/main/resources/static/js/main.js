@@ -8,30 +8,39 @@
 // }
 
 
-function deleteStudent(id) {    
-    var btnDelete = document.getElementById("modalButtonDelete");
-    btnDelete.setAttribute("href", "/student/delete/" + id);
-}
 
-function updateStudent(id, name, email, password) {
-    document.getElementById("modalUpdateForm").action = "/student/update/" + id;
-    document.getElementById("modalUpdateInputName").value = name;
-    document.getElementById("modalUpdateInputEmail").value = email;
-    document.getElementById("modalUpdateInputPassword").value = password;
+// Envia o link para o botão do Modal Delete
+function DeleteObj(objName, id) {
+    var btnDeleteModal = document.getElementById("DeleteModalButton");
+    btnDeleteModal.setAttribute("href", objName + "/delete/" + id);
 }
 
 
+// Recebe um Objeto Model em String, mapeia as informações e as insere no Update Modal Form
+function UpdateObj(obj) {
+    // console.log(obj);
+    var a1 = obj.indexOf("(");
+    var a2 = obj.indexOf(")");
 
+    var objName = obj.slice(0, a1).toLowerCase()
+    // console.log(objName);
+    var data = obj.slice(a1 + 1, a2).split(",", 7);
+    // console.log(data);
 
+    var lista = data.map(function(item) {
+        return item.slice(item.indexOf("=") + 1, item.length);
+    });
 
-function deleteTeacher(id) {    
-    var btnDelete = document.getElementById("modalButtonDelete");
-    btnDelete.setAttribute("href", "/teacher/delete/" + id);
+    // console.log(lista);
+    document.getElementById("UpdateModalForm").action = "/" + objName + "/update/" + lista[0];
+
+    var inputs = document.querySelectorAll(".MI");
+    inputs.forEach(function(item, id) {
+        console.log(id);
+        console.log(lista[id + 1]);
+        item.value = lista[id + 1];
+    });
 }
 
-function updateTeacher(id, name, email, password) {
-    document.getElementById("modalUpdateForm").action = "/teacher/update/" + id;
-    document.getElementById("modalUpdateInputName").value = name;
-    document.getElementById("modalUpdateInputEmail").value = email;
-    document.getElementById("modalUpdateInputPassword").value = password;
-}
+
+

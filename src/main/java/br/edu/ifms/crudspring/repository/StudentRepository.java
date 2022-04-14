@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import br.edu.ifms.crudspring.model.Student;
 
 @Repository
-public interface StudentReposiroty  extends JpaRepository<Student, UUID> {
+public interface StudentRepository  extends JpaRepository<Student, UUID> {
     
 }

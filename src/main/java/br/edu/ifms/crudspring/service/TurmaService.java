@@ -15,18 +15,22 @@ public class TurmaService {
     @Autowired
     TurmaRepository turmaRepository;
 
+
     public List<Turma> getAllTurmas() {
         return turmaRepository.findAll();
     }
+
 
     public Turma getTurmaById(UUID id) {
         return turmaRepository.getById(id);
     }
     
+
     public void saveTurma(Turma turma) {
         turmaRepository.save(turma);
     }
 
+    
     public void deleteTurmaById(UUID id) {
         turmaRepository.deleteById(id);
     }
