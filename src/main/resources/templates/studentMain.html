@@ -10,12 +10,12 @@
   <body>
     
 
-    <!----- Modal Register ----------------------------------------------------------->
-    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="studentRegisterModalLabel" aria-hidden="true">
+    <!----- Modal Register --------------------------------------------------------------------------------------------------------------------------------------------------------------->
+    <div class="modal fade" id="RegisterModal" tabindex="-1" role="dialog" aria-labelledby="RegisterModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="studentRegisterModalLabel">Registrar Estudante</h5>
+            <h5 class="modal-title" id="RegisterModalLabel">Registrar Estudante</h5>
             <button type="button" class="close bntClose" data-dismiss="modal" aria-label="Fechar">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -25,18 +25,18 @@
               <div class="form-row">
 
                 <div class="form-group">
-                  <label for="modalRegisterInputName">Nome</label>
-                  <input th:field="*{name}" type="text" class="form-control" id="modalRegisterInputName" placeholder="Digite um Nome"/>
+                  <label for="RegisterModalInputName">Nome</label>
+                  <input th:field="*{name}" type="text" class="form-control" id="RegisterModalInputName" placeholder="Digite um Nome" required/>
                 </div>
 
                 <div class="form-group">
-                  <label for="modalRegisterInputEmail">Email</label>
-                  <input th:field="*{email}" type="email" class="form-control" id="modalRegisterInputEmail" placeholder="Digite um Email"/>
+                  <label for="RegisterModalInputEmail">Email</label>
+                  <input th:field="*{email}" type="email" class="form-control" id="RegisterModalInputEmail" placeholder="Digite um Email" required/>
                 </div>
 
                 <div class="form-group">
-                  <label for="modalRegisterInputPassword">Senha</label>
-                  <input th:field="*{password}" type="password" class="form-control" id="modalRegisterInputPassword" placeholder="Digite uma senha"/>
+                  <label for="RegisterModalInputPassword">Senha</label>
+                  <input th:field="*{password}" type="password" class="form-control" id="RegisterModalInputPassword" placeholder="Digite uma senha" required/>
                 </div>
 
               </div>
@@ -52,12 +52,12 @@
     
 
 
-    <!----- Modal Delete ----------------------------------------------------------->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="studentDeleteModalLabel" aria-hidden="true">
+    <!----- Modal Delete ----------------------------------------------------------------------------------------------------------------------------------------------------------------->
+    <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="studentDeleteModalLabel">Excluir Estudante</h5>
+            <h5 class="modal-title" id="DeleteModalLabel">Excluir Estudante</h5>
             <button type="button" class="close bntClose" data-dismiss="modal" aria-label="Fechar">
               <span aria-hidden="true">&times;</span>
             </button>
