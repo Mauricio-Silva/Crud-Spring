@@ -18,7 +18,7 @@ function DeleteObj(objName, id) {
 
 // Recebe um Objeto Model em String, mapeia as informações e as insere no Update Modal Form
 function UpdateObj(obj) {
-    // console.log(obj);
+    console.log(obj);
     var a1 = obj.indexOf("(");
     var a2 = obj.indexOf(")");
 

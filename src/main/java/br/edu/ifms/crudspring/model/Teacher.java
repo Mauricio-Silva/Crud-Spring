@@ -6,8 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-// import javax.persistence.JoinColumn;
-// import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +27,7 @@ public class Teacher {
     String email;
     String password;
 
-    // @ManyToOne
-    // @JoinColumn(name = "turma_id")
-    //Turma turma;
+    @ManyToOne
+    @JoinColumn(name = "turma_id")
+    Turma turma;
 }

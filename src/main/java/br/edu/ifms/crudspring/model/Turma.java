@@ -1,13 +1,14 @@
 package br.edu.ifms.crudspring.model;
 
-// import java.util.List;
+// import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-// import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +26,6 @@ public class Turma {
 
     String name;
 
-    // @OneToMany(mappedBy = "turma")
-    // List<Teacher> teachers;
+    @OneToMany(mappedBy = "turma")
+    List<Teacher> teachers;// = new ArrayList<Teacher>();
 }
