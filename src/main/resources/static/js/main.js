@@ -9,6 +9,14 @@
 
 
 
+// Envia o id da turma para o Save
+function RegisterObj() {
+    var select = document.getElementById("RegisterModalSelectTurma");
+    var id = select.options[select.selectedIndex].value;
+    document.getElementById("RegisterModalForm").action = "/teacher/save/" + id;
+}
+
+
 // Envia o link para o botão do Modal Delete
 function DeleteObj(objName, id) {
     var btnDeleteModal = document.getElementById("DeleteModalButton");
@@ -18,7 +26,7 @@ function DeleteObj(objName, id) {
 
 // Recebe um Objeto Model em String, mapeia as informações e as insere no Update Modal Form
 function UpdateObj(obj) {
-    console.log(obj);
+    // console.log(obj);
     var a1 = obj.indexOf("(");
     var a2 = obj.indexOf(")");
 
@@ -36,8 +44,8 @@ function UpdateObj(obj) {
 
     var inputs = document.querySelectorAll(".MI");
     inputs.forEach(function(item, id) {
-        console.log(id);
-        console.log(lista[id + 1]);
+        // console.log(id);
+        // console.log(lista[id + 1]);
         item.value = lista[id + 1];
     });
 }

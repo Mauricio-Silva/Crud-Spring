@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifms.crudspring.model.Teacher;
-import br.edu.ifms.crudspring.model.Turma;
+// import br.edu.ifms.crudspring.model.Turma;
 import br.edu.ifms.crudspring.repository.TeacherRepository;
 
 @Service
@@ -30,12 +30,19 @@ public class TeacherService {
     }
 
 
-    public void saveTeacher(Turma turma, UUID id, String name, String email, String password) {
-        // Turma turmaOfTeacher = turmaService.getTurmaById(turma_id);
-        Teacher teacher = new Teacher(id, name, email, password, turma);
+    public void saveTeacher(Teacher teacher) {
         teacherRepository.save(teacher);
-        turma.getTeachers().add(teacher);
-        turmaService.saveTurma(turma);
+        // Turma turmaOfTeacher = turmaService.getTurmaById(id);
+        // teacher.setTurma(turmaOfTeacher);
+        // teacherRepository.save(teacher);
+        // List<Teacher> teachersList = turmaOfTeacher.getTeachers();
+        // teachersList.add(teacher);
+        // turmaService.saveTurma(turmaOfTeacher);
+        // Teacher teacher = new Teacher(id, name, email, password, turma);
+        // teacherRepository.save(teacher);
+        // List<Teacher> teachersList = turma.getTeachers();
+        // teachersList.add(teacher);
+        // turmaService.saveTurma(turma);
     }
 
 

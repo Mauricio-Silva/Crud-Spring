@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.edu.ifms.crudspring.model.Teacher;
@@ -41,8 +40,8 @@ public class TeacherController {
 
 
     @PostMapping("/save")
-    public String saveTeacher(@RequestBody Teacher teacherFromRegister) {
-        teacherService.saveTeacher(teacherFromRegister.getTurma(), teacherFromRegister.getId(), teacherFromRegister.getName(), teacherFromRegister.getEmail(), teacherFromRegister.getPassword());
+    public String saveTeacher(@ModelAttribute("noDataTeacher") Teacher teacher) {
+        teacherService.saveTeacher(teacher);
         return "redirect:/teacher/main";
     }
 
@@ -56,7 +55,7 @@ public class TeacherController {
 
     @PostMapping("/update/{id}")
     public String updateTeacher(@PathVariable("id") UUID id, @ModelAttribute("noDataTeacher") Teacher teacherFromUpdate) {
-        teacherService.saveTeacher(teacherFromUpdate.getTurma(), teacherFromUpdate.getId(), teacherFromUpdate.getName(), teacherFromUpdate.getEmail(), teacherFromUpdate.getPassword());
+        // teacherService.saveTeacher(teacherFromUpdate);
         return "redirect:/teacher/main";
     }
 }

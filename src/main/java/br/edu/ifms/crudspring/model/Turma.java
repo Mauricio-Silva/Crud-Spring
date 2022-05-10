@@ -1,6 +1,6 @@
 package br.edu.ifms.crudspring.model;
 
-// import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,5 +27,5 @@ public class Turma {
     String name;
 
     @OneToMany(mappedBy = "turma")
-    List<Teacher> teachers;// = new ArrayList<Teacher>();
+    List<Teacher> teachers = new ArrayList<Teacher>();
 }

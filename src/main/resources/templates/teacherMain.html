@@ -20,7 +20,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form th:action="@{/teacher/save}" th:object="${noDataTeacher}" method="post">
+          <form th:action="@{/teacher/save}" th:object="${noDataTeacher}" method="post" id="RegisterModalForm">
             <div class="modal-body">
               <div class="form-row">
 
@@ -40,9 +40,12 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="RegisterModalInputTurma">Turma</label>
-                  <select th:field="*{turma}" class="form-control"  id="RegisterModalInputTurma" placeholder="Digite uma Senha" required>
-                    <option th:each="turma: ${turmasList}" th:value="${turma.id}" th:text="${turma.name}"></option>
+                  <label for="RegisterModalSelectTurma">Turma</label>
+                  <select th:field="*{turma}" class="form-control"  id="RegisterModalSelectTurma" placeholder="Escolha uma Turma" required>
+                    <!-- <option th:each="turma: ${turmasList}" th:value="${turma.id}" th:text="${turma.name}"></option> -->
+                    <th:block th:each="turma: ${turmasList}">
+                      <option th:value="${turma.id}" th:text="${turma.name}"></option>
+                    </th:block>
                   </select>
                 </div>
 
@@ -147,6 +150,7 @@
         <div class="row">
           <div class="mt-2 mb-2">
             <a class="btn btn-success" data-toggle="modal" data-target="#RegisterModal">
+              <!-- th:attr="onclick=|RegisterObj()|" -->
               <i class="fas fa-user-plus"></i>
               Cadastrar Novo Professor
             </a>
@@ -169,19 +173,19 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Email</th>
                 <!-- <th scope="col">Password</th> -->
-                <th scope="col"></th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
               <tr th:each="teacher: ${teachersList}">
-                <th th:text="${teacher.id}" scope="row"></th>
-                <th th:text="${teacher.name}" scope="row"></th>
-                <th th:text="${teacher.email}" scope="row"></th>
+                <td th:text="${teacher.id}" scope="row"></td>
+                <td th:text="${teacher.name}" scope="row"></td>
+                <td th:text="${teacher.email}" scope="row"></td>
                 <!-- <th th:text="${teacher.password}" scope="row" class="passwordField" style="overflow: hidden;"></th> -->
-                <th class="btnArea">
+                <td class="btnArea">
                   <a class="btn btn-primary" data-toggle="modal" data-target="#UpdateModal" th:attr="onclick=|UpdateObj('${teacher}')|">Editar</a>
                   <a class="btn btn-danger" data-toggle="modal" data-target="#DeleteModal" th:attr="onclick=|DeleteObj('/teacher', '${teacher.id}')|">Excluir</a>
-                </th>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -189,6 +193,7 @@
 
           <!----- No Restults Message ------------------------------------------------------------>
           <p class="no-results" th:if="${teachersList.isEmpty}">Nenhum resultado encontrado</p>
+          <p class="no-results" th:text="${HAHAHAHA}"></p>
 
         </div>
       </div>
